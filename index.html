@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fadfada | فضفضة نساء</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Roboto+Mono&display=swap" rel="stylesheet">
+    <style>
+      body {
+        font-family: 'Cairo', sans-serif;
+      }
+      .font-cascadia {
+        font-family: 'Roboto Mono', 'Cascadia Code', monospace;
+      }
+      /* Global Focus Style for Accessibility */
+      *:focus-visible {
+        outline: 3px solid #60a5fa; /* A light blue, matching the theme */
+        outline-offset: 2px;
+        border-radius: 4px;
+      }
+      /* Skip to Content Link */
+      .skip-link {
+        position: absolute;
+        transform: translateY(-120%);
+        transition: transform 0.3s ease-out;
+        z-index: 9999;
+      }
+      .skip-link:focus {
+        transform: translateY(0%);
+      }
+
+      /* Screen Transitions */
+      @keyframes screen-enter {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+      .screen-enter-animation {
+        animation: screen-enter 0.4s ease-out forwards;
+      }
+
+      /* Typing Indicator */
+      @keyframes typing-dot {
+        0%, 60%, 100% { transform: scale(0.8); opacity: 0.5; }
+        30% { transform: scale(1); opacity: 1; }
+      }
+      .animate-typing-dot {
+        animation: typing-dot 1.4s infinite ease-in-out;
+      }
+
+      /* Blinking Cursor for Streaming Text */
+      @keyframes blinking-cursor {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0; }
+      }
+      .animate-blinking-cursor {
+        animation: blinking-cursor 1.2s step-end infinite;
+        vertical-align: bottom; /* Aligns cursor with the text baseline */
+      }
+
+      /* New Message Animation */
+      @keyframes message-enter {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .message-enter-animation {
+        animation: message-enter 0.3s ease-out forwards;
+      }
+      
+      /* Mood Card Animation */
+      @keyframes mood-card-enter {
+        from { opacity: 0; transform: scale(0.9); }
+        to { opacity: 1; transform: scale(1); }
+      }
+      .animate-mood-card-enter {
+        animation: mood-card-enter 0.5s ease-out forwards;
+      }
+
+      /* Onboarding Hint */
+      @keyframes onboarding-enter {
+        from { opacity: 0; transform: translateY(10px) scale(0.95); }
+        to { opacity: 1; transform: translateY(0) scale(1); }
+      }
+      .animate-onboarding-enter {
+        animation: onboarding-enter 0.4s ease-out forwards;
+      }
+
+      @keyframes pulse-glow {
+        0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7); }
+        70% { box-shadow: 0 0 0 10px rgba(255, 255, 255, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+      }
+      .animate-pulse-glow {
+        animation: pulse-glow 2s infinite;
+        border-radius: 9999px;
+      }
+      
+      /* Achievement Notification Animations */
+      @keyframes achievement-enter {
+        from {
+          opacity: 0;
+          transform: translateY(-100%) translateX(-50%) scale(0.9);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) translateX(-50%) scale(1);
+        }
+      }
+
+      @keyframes achievement-exit {
+        from {
+          opacity: 1;
+          transform: translateY(0) translateX(-50%) scale(1);
+        }
+        to {
+          opacity: 0;
+          transform: translateY(-100%) translateX(-50%) scale(0.9);
+        }
+      }
+
+      @keyframes progress-bar {
+          from { width: 100%; }
+          to { width: 0%; }
+      }
+
+      .animate-achievement-enter {
+        animation: achievement-enter 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) forwards;
+      }
+
+      .animate-achievement-exit {
+        animation: achievement-exit 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) forwards;
+      }
+
+      .animate-progress-bar {
+          animation: progress-bar 4s linear forwards;
+      }
+      
+      /* Challenge Completion Animation */
+      @keyframes challenge-complete {
+        0% { transform: scale(0.9); opacity: 0; }
+        50% { transform: scale(1.1); opacity: 1; }
+        100% { transform: scale(1); opacity: 1; }
+      }
+      .animate-challenge-complete {
+        animation: challenge-complete 0.5s ease-out forwards;
+      }
+
+      /* Waves Animation */
+      .waves-container {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 15vh;
+        min-height: 100px;
+        max-height: 150px;
+        z-index: 0;
+      }
+      .waves {
+        position: relative;
+        width: 100%;
+        height: 15vh;
+        margin-bottom: -7px; /* Fix for safari gap */
+        min-height: 100px;
+        max-height: 150px;
+      }
+      .parallax > use {
+        animation: move-forever 25s cubic-bezier(.55,.5,.45,.5) infinite;
+      }
+      .parallax > use:nth-child(1) {
+        animation-delay: -2s;
+        animation-duration: 7s;
+      }
+      .parallax > use:nth-child(2) {
+        animation-delay: -3s;
+        animation-duration: 10s;
+      }
+      .parallax > use:nth-child(3) {
+        animation-delay: -4s;
+        animation-duration: 13s;
+      }
+      .parallax > use:nth-child(4) {
+        animation-delay: -5s;
+        animation-duration: 20s;
+      }
+      @keyframes move-forever {
+        0% {
+        transform: translate3d(-90px,0,0);
+        }
+        100% { 
+          transform: translate3d(85px,0,0);
+        }
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://aistudiocdn.com/react@^19.1.1/",
+    "react": "https://aistudiocdn.com/react@^19.1.1",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.19.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.1.1/",
+    "zustand": "https://aistudiocdn.com/zustand@^4.5.4",
+    "zustand/middleware": "https://aistudiocdn.com/zustand@^4.5.4/middleware",
+    "zustand/": "https://aistudiocdn.com/zustand@^5.0.8/"
+  }
+}
+</script>
+</head>
+  <body>
+    <a href="#main-content" class="skip-link block p-3 bg-blue-800 text-white font-bold text-center">تجاوز إلى المحتوى الرئيسي</a>
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/service-worker.js')
+            .then(registration => console.log('Service Worker registered successfully:', registration))
+            .catch(error => console.log('Service Worker registration failed:', error));
+        });
+      }
+    </script>
+  </body>
+</html>
